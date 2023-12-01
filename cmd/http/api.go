@@ -5,6 +5,7 @@ import (
 	"fww-regulation/config"
 	"fww-regulation/config/middleware"
 	"fww-regulation/internal/handler"
+	"fww-regulation/internal/repository"
 	"fww-regulation/internal/usecase"
 	"log"
 	"os"
@@ -33,16 +34,26 @@ func main() {
 	fiberProm := middleware.NewWithRegistry(prometheus.DefaultRegisterer, "fww-core", "", "", map[string]string{})
 
 	//=== repository lists start ===//
-
+	blacklistRepo := repository.NewBlacklistRepository(repository.BlacklistRepository{
+		DB: db,
+	})
 	//=== repository lists end ===//
 
 	//=== usecase lists start ===//
 	dukcapilUsecase := usecase.NewDukcapilUsecase(&usecase.DukcapilUsecase{})
+
+	blacklistUsecase := usecase.NewBlacklistUsecase(&usecase.BlacklistUsecase{
+		BlacklistRepo: blacklistRepo,
+	})
 	//=== usecase lists end ===//
 
 	//=== handler lists start ===//
 	dukcapilHandler := handler.NewDukcapilHandler(handler.Dukcapil{
 		DukcapilUsecase: dukcapilUsecase,
+	})
+
+	blacklistHandler := handler.NewBlacklistHandler(handler.Blacklist{
+		BlacklistUsecase: blacklistUsecase,
 	})
 	//=== handler lists end ===//
 	app := fiber.New(fiber.Config{
@@ -70,6 +81,9 @@ func main() {
 
 	//Dukcapil Routes
 	app.Get("/check/dukcapil", dukcapilHandler.CheckDukcapilByKTP)
+
+	//Blacklist Routes
+	app.Get("/check/blacklist", blacklistHandler.CheckBlacklist)
 
 	//=== listen port ===//
 	if err := app.Listen(fmt.Sprintf(":%s", "3000")); err != nil {
