@@ -45,6 +45,8 @@ func main() {
 	blacklistUsecase := usecase.NewBlacklistUsecase(&usecase.BlacklistUsecase{
 		BlacklistRepo: blacklistRepo,
 	})
+
+	peduliLindungiUsecase := usecase.NewPeduliLindungiUsecase(&usecase.PeduliLindungiUsecase{})
 	//=== usecase lists end ===//
 
 	//=== handler lists start ===//
@@ -54,6 +56,10 @@ func main() {
 
 	blacklistHandler := handler.NewBlacklistHandler(handler.Blacklist{
 		BlacklistUsecase: blacklistUsecase,
+	})
+
+	peduliLindungiHandler := handler.NewPeduliLindungiHandler(handler.PeduliLindungi{
+		PeduliLindungiUsecase: peduliLindungiUsecase,
 	})
 	//=== handler lists end ===//
 	app := fiber.New(fiber.Config{
@@ -84,6 +90,9 @@ func main() {
 
 	//Blacklist Routes
 	app.Get("/check/blacklist", blacklistHandler.CheckBlacklist)
+
+	//Peduli Lindungi Routes
+	app.Get("/check/pedulilindungi", peduliLindungiHandler.CheckPeduliLindungi)
 
 	//=== listen port ===//
 	if err := app.Listen(fmt.Sprintf(":%s", "3000")); err != nil {
