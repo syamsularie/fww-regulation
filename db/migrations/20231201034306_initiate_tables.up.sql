@@ -1,0 +1,12 @@
+CREATE TABLE blacklist (
+    blacklist_id INT AUTO_INCREMENT PRIMARY KEY,
+    ktp VARCHAR(20) NOT NULL UNIQUE,
+    name VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- data blacklist
+INSERT INTO blacklist (ktp, name) VALUES ("3602041211870001", "Andi");
+INSERT INTO blacklist (ktp, name) VALUES ("3702043111970002", "Budi");
+INSERT INTO blacklist (ktp, name) VALUES ("3803013516970302", "Caca");
