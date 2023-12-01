@@ -16,10 +16,10 @@ func (uc *DukcapilUsecase) CheckDukcapilByKTP(ktp string) (string, error) {
 	case "3602041211870001":
 		return "valid", nil
 	case "3702043111970002":
-		return "not valid", nil
+		return "valid", nil
 	case "3803013516970302":
 		return "valid", nil
 	default:
-		return "ktp not found", nil
+		return "not valid", nil
 	}
 }
