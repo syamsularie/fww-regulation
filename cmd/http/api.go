@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"fww-regulation/config"
 	"fww-regulation/config/middleware"
+	"fww-regulation/internal/handler"
+	"fww-regulation/internal/usecase"
 	"log"
 	"os"
 	"time"
@@ -35,11 +37,13 @@ func main() {
 	//=== repository lists end ===//
 
 	//=== usecase lists start ===//
-
+	dukcapilUsecase := usecase.NewDukcapilUsecase(&usecase.DukcapilUsecase{})
 	//=== usecase lists end ===//
 
 	//=== handler lists start ===//
-
+	dukcapilHandler := handler.NewDukcapilHandler(handler.Dukcapil{
+		DukcapilUsecase: dukcapilUsecase,
+	})
 	//=== handler lists end ===//
 	app := fiber.New(fiber.Config{
 		BodyLimit: 30 * 1024 * 1024,
@@ -63,6 +67,9 @@ func main() {
 	//=== healthz route
 	// app.Get("/", Healthz)
 	app.Get("/healthz", Healthz)
+
+	//Dukcapil Routes
+	app.Get("/check/dukcapil", dukcapilHandler.CheckDukcapilByKTP)
 
 	//=== listen port ===//
 	if err := app.Listen(fmt.Sprintf(":%s", "3000")); err != nil {
