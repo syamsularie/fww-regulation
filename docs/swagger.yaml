@@ -1,0 +1,113 @@
+basePath: /
+definitions:
+  model.BlacklistRequest:
+    properties:
+      ktp:
+        type: string
+    type: object
+  model.DukcapilRequest:
+    properties:
+      ktp:
+        type: string
+    type: object
+  model.ErrorResponse:
+    properties:
+      error:
+        type: string
+    type: object
+  model.PeduliLindungiRequest:
+    properties:
+      ktp:
+        type: string
+    type: object
+  model.StatusResponse:
+    properties:
+      status:
+        type: string
+    type: object
+host: localhost:3000
+info:
+  contact: {}
+  description: This is a FWW Regulation Documentation API
+  title: FWW Regulation API
+  version: "1.0"
+paths:
+  /check/blacklist:
+    get:
+      consumes:
+      - application/json
+      description: Check KTP blacklist status
+      parameters:
+      - description: BlacklistRequest
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/model.BlacklistRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.StatusResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.ErrorResponse'
+      summary: Check KTP blacklist status
+      tags:
+      - blacklist
+  /check/dukcapil:
+    get:
+      consumes:
+      - application/json
+      description: Check KTP status at Dukcapil
+      parameters:
+      - description: DukcapilRequest
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/model.DukcapilRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.StatusResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.ErrorResponse'
+      summary: Check KTP status at Dukcapil
+      tags:
+      - dukcapil
+  /check/pedulilindungi:
+    get:
+      consumes:
+      - application/json
+      description: Check KTP status at Peduli Lindungi
+      parameters:
+      - description: PeduliLindungiRequest
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/model.PeduliLindungiRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.StatusResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.ErrorResponse'
+      summary: Check KTP status at Peduli Lindungi
+      tags:
+      - peduli lindungi
+swagger: "2.0"

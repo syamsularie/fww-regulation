@@ -19,6 +19,15 @@ func NewPeduliLindungiHandler(handler PeduliLindungi) PeduliLindungiHandler {
 	return &handler
 }
 
+// @Summary Check KTP status at Peduli Lindungi
+// @Description	Check KTP status at Peduli Lindungi
+// @Tags peduli lindungi
+// @Accept json
+// @Produce	json
+// @Param payload body model.PeduliLindungiRequest true "PeduliLindungiRequest"
+// @Success 200 {object} model.StatusResponse "OK"
+// @Failure 400 {object} model.ErrorResponse "Bad Request"
+// @Router /check/pedulilindungi [get]
 func (handler *PeduliLindungi) CheckPeduliLindungi(c *fiber.Ctx) error {
 	var request model.PeduliLindungiRequest
 	if err := c.BodyParser(&request); err != nil {

@@ -11,15 +11,23 @@ import (
 	"os"
 	"time"
 
+	_ "fww-regulation/docs"
+
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/gofiber/fiber/v2/middleware/pprof"
 	"github.com/gofiber/fiber/v2/middleware/recover"
+	"github.com/gofiber/swagger"
 	"github.com/joho/godotenv"
 	"github.com/prometheus/client_golang/prometheus"
 )
 
+// @title FWW Regulation API
+// @version 1.0
+// @description This is a FWW Regulation Documentation API
+// @host localhost:3000
+// @BasePath /
 func main() {
 	baseDep := config.NewBaseDep()
 	loadEnv(baseDep.Logger)
@@ -65,6 +73,8 @@ func main() {
 	app := fiber.New(fiber.Config{
 		BodyLimit: 30 * 1024 * 1024,
 	})
+
+	app.Get("/swagger/*", swagger.HandlerDefault)
 
 	app.Use(fiberProm.Middleware)
 	app.Use(recover.New())
