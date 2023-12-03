@@ -16,7 +16,7 @@ const docTemplate = `{
     "basePath": "{{.BasePath}}",
     "paths": {
         "/check/blacklist": {
-            "get": {
+            "post": {
                 "description": "Check KTP blacklist status",
                 "consumes": [
                     "application/json"
@@ -56,7 +56,7 @@ const docTemplate = `{
             }
         },
         "/check/dukcapil": {
-            "get": {
+            "post": {
                 "description": "Check KTP status at Dukcapil",
                 "consumes": [
                     "application/json"
@@ -96,7 +96,7 @@ const docTemplate = `{
             }
         },
         "/check/pedulilindungi": {
-            "get": {
+            "post": {
                 "description": "Check KTP status at Peduli Lindungi",
                 "consumes": [
                     "application/json"
@@ -183,7 +183,7 @@ const docTemplate = `{
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = &swag.Spec{
 	Version:          "1.0",
-	Host:             "localhost:3000",
+	Host:             "localhost:3004",
 	BasePath:         "/",
 	Schemes:          []string{},
 	Title:            "FWW Regulation API",

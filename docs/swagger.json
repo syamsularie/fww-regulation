@@ -6,11 +6,11 @@
         "contact": {},
         "version": "1.0"
     },
-    "host": "localhost:3000",
+    "host": "localhost:3004",
     "basePath": "/",
     "paths": {
         "/check/blacklist": {
-            "get": {
+            "post": {
                 "description": "Check KTP blacklist status",
                 "consumes": [
                     "application/json"
@@ -50,7 +50,7 @@
             }
         },
         "/check/dukcapil": {
-            "get": {
+            "post": {
                 "description": "Check KTP status at Dukcapil",
                 "consumes": [
                     "application/json"
@@ -90,7 +90,7 @@
             }
         },
         "/check/pedulilindungi": {
-            "get": {
+            "post": {
                 "description": "Check KTP status at Peduli Lindungi",
                 "consumes": [
                     "application/json"

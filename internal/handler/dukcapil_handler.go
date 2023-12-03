@@ -27,7 +27,7 @@ func NewDukcapilHandler(handler Dukcapil) DukcapilHandler {
 // @Param payload body model.DukcapilRequest true "DukcapilRequest"
 // @Success 200 {object} model.StatusResponse "OK"
 // @Failure 400 {object} model.ErrorResponse "Bad Request"
-// @Router /check/dukcapil [get]
+// @Router /check/dukcapil [post]
 func (handler *Dukcapil) CheckDukcapilByKTP(c *fiber.Ctx) error {
 	var req model.DukcapilRequest
 	if err := c.BodyParser(&req); err != nil {

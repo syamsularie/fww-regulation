@@ -26,7 +26,7 @@ import (
 // @title FWW Regulation API
 // @version 1.0
 // @description This is a FWW Regulation Documentation API
-// @host localhost:3000
+// @host localhost:3004
 // @BasePath /
 func main() {
 	baseDep := config.NewBaseDep()
@@ -96,16 +96,16 @@ func main() {
 	app.Get("/healthz", Healthz)
 
 	//Dukcapil Routes
-	app.Get("/check/dukcapil", dukcapilHandler.CheckDukcapilByKTP)
+	app.Post("/check/dukcapil", dukcapilHandler.CheckDukcapilByKTP)
 
 	//Blacklist Routes
-	app.Get("/check/blacklist", blacklistHandler.CheckBlacklist)
+	app.Post("/check/blacklist", blacklistHandler.CheckBlacklist)
 
 	//Peduli Lindungi Routes
-	app.Get("/check/pedulilindungi", peduliLindungiHandler.CheckPeduliLindungi)
+	app.Post("/check/pedulilindungi", peduliLindungiHandler.CheckPeduliLindungi)
 
 	//=== listen port ===//
-	if err := app.Listen(fmt.Sprintf(":%s", "3000")); err != nil {
+	if err := app.Listen(fmt.Sprintf(":%s", "3004")); err != nil {
 		log.Fatal(err)
 	}
 

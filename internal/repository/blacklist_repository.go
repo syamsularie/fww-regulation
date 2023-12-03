@@ -27,7 +27,6 @@ func (repo *BlacklistRepository) CheckBlacklist(ktp string) (bool, error) {
 		repo.Base.Logger.Error("failed to get blacklist", zap.Error(err))
 		return false, err
 	}
-
 	if count > 0 {
 		return false, nil
 	}

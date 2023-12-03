@@ -27,7 +27,7 @@ func NewBlacklistHandler(handler Blacklist) BlacklistHandler {
 // @Param payload body model.BlacklistRequest true "BlacklistRequest"
 // @Success 200 {object} model.StatusResponse "OK"
 // @Failure 400 {object} model.ErrorResponse "Bad Request"
-// @Router /check/blacklist [get]
+// @Router /check/blacklist [post]
 func (handler *Blacklist) CheckBlacklist(c *fiber.Ctx) error {
 	var request model.BlacklistRequest
 	if err := c.BodyParser(&request); err != nil {

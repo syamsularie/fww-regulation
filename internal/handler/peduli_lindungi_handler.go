@@ -27,7 +27,7 @@ func NewPeduliLindungiHandler(handler PeduliLindungi) PeduliLindungiHandler {
 // @Param payload body model.PeduliLindungiRequest true "PeduliLindungiRequest"
 // @Success 200 {object} model.StatusResponse "OK"
 // @Failure 400 {object} model.ErrorResponse "Bad Request"
-// @Router /check/pedulilindungi [get]
+// @Router /check/pedulilindungi [post]
 func (handler *PeduliLindungi) CheckPeduliLindungi(c *fiber.Ctx) error {
 	var request model.PeduliLindungiRequest
 	if err := c.BodyParser(&request); err != nil {

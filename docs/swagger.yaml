@@ -25,7 +25,7 @@ definitions:
       status:
         type: string
     type: object
-host: localhost:3000
+host: localhost:3004
 info:
   contact: {}
   description: This is a FWW Regulation Documentation API
@@ -33,7 +33,7 @@ info:
   version: "1.0"
 paths:
   /check/blacklist:
-    get:
+    post:
       consumes:
       - application/json
       description: Check KTP blacklist status
@@ -59,7 +59,7 @@ paths:
       tags:
       - blacklist
   /check/dukcapil:
-    get:
+    post:
       consumes:
       - application/json
       description: Check KTP status at Dukcapil
@@ -85,7 +85,7 @@ paths:
       tags:
       - dukcapil
   /check/pedulilindungi:
-    get:
+    post:
       consumes:
       - application/json
       description: Check KTP status at Peduli Lindungi
