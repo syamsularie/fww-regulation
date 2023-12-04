@@ -13,9 +13,9 @@ func NewPeduliLindungiUsecase(peduliLindungiUsecase *PeduliLindungiUsecase) Pedu
 func (uc *PeduliLindungiUsecase) CheckPeduliLindungi(ktp string) (string, error) {
 	switch ktp {
 	case "3602041211870001":
-		return "vaksin 1", nil
+		return "vaksin1", nil
 	case "3702043111970002":
-		return "vaksin 2", nil
+		return "vaksin2", nil
 	case "3803013516970302":
 		return "Belum Vaksin", nil
 	default:
